@@ -105,18 +105,18 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-      axios.get('https://localhost:44394/api/Course', config).then((response) => {
+      axios.get('http://www.apiacademico.somee.com/api/Course', config).then((response) => {
        this.listCourse=response.data
        console.log(this.listCourse)
 
-       axios.get('https://localhost:44394/api/User/idRol/'+3, config).then((response) => {
+       axios.get('http://www.apiacademico.somee.com/api/User/idRol/'+3, config).then((response) => {
         this.listUser=response.data
         var arreglado = this.listUser.map( item => { 
         return { id: item.id , name : item.name+' '+item.lastName }; 
          });
         this.listUser=arreglado
        });
-       axios.get('https://localhost:44394/api/Grade',config).then((response) => {
+       axios.get('http://www.apiacademico.somee.com/api/Grade',config).then((response) => {
         this.lisGrade=response.data
        });
      })
@@ -135,7 +135,7 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-          axios.post("https://localhost:44394/api/AllocationLoad",data,config).then((response) => {
+          axios.post("http://www.apiacademico.somee.com/api/AllocationLoad",data,config).then((response) => {
            this.$router.push(`/Calificaciones`);
       })
      
@@ -147,7 +147,7 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-          axios.post("https://localhost:44394/api/Calificacions",this.Calificaciones,config).then((response) => {
+          axios.post("http://www.apiacademico.somee.com/api/Calificacions",this.Calificaciones,config).then((response) => {
           console.log(response)
           this.idCalification = response.data.id
           })

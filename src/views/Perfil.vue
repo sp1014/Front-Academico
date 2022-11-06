@@ -85,12 +85,12 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-      axios.get('https://localhost:44394/api/Login', config).then((response) => {
+      axios.get('http://www.apiacademico.somee.com/api/Login', config).then((response) => {
        this.datos=response.data
-       axios.get('https://localhost:44394/api/User/'+this.datos.id, config).then((response) => {
+       axios.get('http://www.apiacademico.somee.com/api/User/'+this.datos.id, config).then((response) => {
         this.data=response.data
        });
-       axios.get('https://localhost:44394/api/UserData/Doc').then((response) => {
+       axios.get('http://www.apiacademico.somee.com/api/UserData/Doc').then((response) => {
         this.lisDoc=response.data
         console.log(this.lisDoc)
        });
@@ -116,8 +116,8 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-          axios.post("https://localhost:44394/api/user",this.form)
-      axios.put(`https://localhost:44394/api/User/${this.data.id}`,data,config).then((response) => {
+          axios.post("http://www.apiacademico.somee.com/api/user",this.form)
+      axios.put(`http://www.apiacademico.somee.com/api/User/${this.data.id}`,data,config).then((response) => {
         console.log(response)
       }).catch(e=>{
         console.log(e)

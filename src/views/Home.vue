@@ -40,7 +40,7 @@ import Header from '@/components/Header';
         },
       };
 
-      axios.get('https://localhost:44394/api/Login', config).then((response) => {
+      axios.get('http://www.apiacademico.somee.com/api/Login', config).then((response) => {
        this.datos=response.data
       // this.desserts=datos.data;
      })

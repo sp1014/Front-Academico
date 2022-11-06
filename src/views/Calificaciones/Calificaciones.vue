@@ -119,7 +119,7 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-      axios.get('https://localhost:44394/api/AllocationLoad', config).then((response) => {
+      axios.get('http://www.apiacademico.somee.com/api/AllocationLoad', config).then((response) => {
        this.desserts=response.data
        console.log(this.datos)
       // this.desserts=datos.data;
@@ -141,7 +141,7 @@ import axios from "axios";
       },
 
       save () {
-      axios.put('https://localhost:44394/api/Calificacions/'+this.editedIndex,this.editedItem).then((response) => {
+      axios.put('http://www.apiacademico.somee.com/api/Calificacions/'+this.editedIndex,this.editedItem).then((response) => {
        console.log(response)
          this.initialize()
      })

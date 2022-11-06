@@ -58,7 +58,7 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-      axios.get('https://localhost:44394/api/User', config).then((response) => {
+      axios.get('http://www.apiacademico.somee.com/api/User', config).then((response) => {
        this.datos=response.data
        console.log(this.datos)
       // this.desserts=datos.data;

@@ -42,7 +42,7 @@ import swal from 'sweetalert';
           "email" : this.email,
           "password": this.password
         };
-        axios.post('https://localhost:44394/api/Login', json)
+        axios.post('http://www.apiacademico.somee.com/api/Login', json)
         .then( data =>{
            if(data.status == "200"){
        

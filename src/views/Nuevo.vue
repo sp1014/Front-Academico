@@ -88,7 +88,7 @@ export default {
     methods:{     
         guardar(){       
             console.log(this.form)  
-            axios.post("https://localhost:44394/api/user",this.form)
+            axios.post("http://www.apiacademico.somee.com/api/user",this.form)
             .then(data =>{
                 this.makeToast("Hecho","Usuario creado","success"+data);
                 this.$router.push("/Home");

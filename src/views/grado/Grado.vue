@@ -55,7 +55,7 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-        axios.get('https://localhost:44394/api/Grade', config).then((response) => {
+        axios.get('http://www.apiacademico.somee.com/api/Grade', config).then((response) => {
        this.datosCourse=response.data
        console.log(this.datos)
       // this.desserts=datos.data;
