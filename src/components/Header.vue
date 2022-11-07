@@ -10,9 +10,7 @@
        </v-avatar>
 </v-toolbar>
 
-  <v-navigation-drawer app v-model="drawer" temporary   absolute
-      dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
+  <v-navigation-drawer app v-model="drawer" temporary   absolute dark src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg">
     <v-layout mt-4 column align-center>
           <v-divider></v-divider>
       <v-flex>
@@ -27,7 +25,7 @@
      
     </v-layout>
          <v-divider></v-divider>
-         <v-list dense nav >
+         <v-list dense nav v-if="idRol==1" >
         <v-list-item  v-for="item in items" :key="item.title"  link  @click="redirect(item.path)">
           <v-list-item-icon>
             <v-icon>{{item.icon}}</v-icon>
@@ -38,6 +36,31 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <v-list dense nav v-if="idRol==2" >
+        <v-list-item  v-for="item in items2" :key="item.title"  link  @click="redirect(item.path)">
+          <v-list-item-icon>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-list dense nav v-if="idRol==3" >
+        <v-list-item  v-for="item in items3" :key="item.title"  link  @click="redirect(item.path)">
+          <v-list-item-icon>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
    </v-navigation-drawer>
 </div>
 </template>
@@ -52,15 +75,33 @@ import axios from "axios";
         redic:'',
           idRol:'',  
         rol:'',
-         items: [
-          { title: this.idRol==1?'Home':'Home', icon: 'mdi-home', path:'home' },
-          { title: this.idRol==1? 'Perfil':'Perfil', icon: 'mdi-account', path:'Perfil' },
+         items:[
+          { id:1, title: 'Home', icon: 'mdi-home', path:'home' },
+          { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
           { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
-          { title: this.idRol==1?'Horario':'Horario', icon: 'mdi-calendar-check', path:'Horario' },
-          this.idrol==1?{ title: this.idRol==1?'Usuarios':'', icon: 'mdi-account-supervisor-circle', path:'Usuarios' }:
-          this.idRol==1?{ title: 'Materias', icon: 'mdi-folder-account', path:'Materias' }:
-          this.idRol==1?{ title: this.idRol==1?'Grado - Curso':'', icon: 'mdi-view-dashboard', path:'Grado' }:
-          { id:'1', title: 'Cerrar Sesión', icon: 'mdi-clock-start' },
+          { title: 'Horario', icon: 'mdi-calendar-check', path:'Horario' },
+          { title: 'Usuarios', icon: 'mdi-account-supervisor-circle', path:'Usuarios' },
+          { title: 'Materias', icon: 'mdi-folder-account', path:'Materias' },
+          { title: 'Grado - Curso', icon: 'mdi-view-dashboard', path:'Grado' },
+          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+  
+        ],
+
+          items2:[
+          { id:1, title: 'Home', icon: 'mdi-home', path:'home' },
+          { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
+          { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
+          { title: 'Materias', icon: 'mdi-folder-account', path:'Materias' },
+          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+        ],
+
+          items3:[
+          { title: 'Home', icon: 'mdi-home', path:'home' },
+          { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
+          { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
+          { title: 'Horario', icon: 'mdi-calendar-check', path:'Horario' },
+          { title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+  
         ],
       }
       
