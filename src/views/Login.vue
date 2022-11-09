@@ -52,17 +52,16 @@ import swal from 'sweetalert';
         };
         axios.post('http://www.apiacademico.somee.com/api/Login', json)
         .then( data =>{
-           if(data.status == "200"){
-       
-           this.$store.commit("getUser", data);
-         this.$router.push('/Home');
-
-           }else{
-            // console.log(data);
-                swal({title: "Warning",  text: "The email or password is not correct",
+         console.log(data.data[0]);
+           if(data.data[0] == "Email already exists"){
+         //  this.$router.push('/Home');
+          swal({title: "Warning",  text: "The email or password is not correct",
                    icon: "warning",
                    })              
              this.error = true;
+           }else{
+               this.$store.commit("getUser", data);
+               this.$router.push('/Home');
            
            }
         })

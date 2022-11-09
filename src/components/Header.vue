@@ -83,7 +83,7 @@ import axios from "axios";
           { title: 'Usuarios', icon: 'mdi-account-supervisor-circle', path:'Usuarios' },
           { title: 'Materias', icon: 'mdi-folder-account', path:'Materias' },
           { title: 'Grado - Curso', icon: 'mdi-view-dashboard', path:'Grado' },
-          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start',path:'' }
   
         ],
 
@@ -92,7 +92,7 @@ import axios from "axios";
           { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
           { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
           { title: 'Materias', icon: 'mdi-folder-account', path:'Materias' },
-          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+          { id:1, title: 'Cerrar Sesión', icon: 'mdi-clock-start',path:'' }
         ],
 
           items3:[
@@ -100,7 +100,7 @@ import axios from "axios";
           { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
           { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
           { title: 'Horario', icon: 'mdi-calendar-check', path:'Horario' },
-          { title: 'Cerrar Sesión', icon: 'mdi-clock-start' }
+          { title: 'Cerrar Sesión', icon: 'mdi-clock-start', path:'' }
   
         ],
       }
