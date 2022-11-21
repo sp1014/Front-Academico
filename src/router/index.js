@@ -41,6 +41,12 @@ const routes = [
  
   },
   {
+    path: '/CalificacionEstudiante',
+    name: 'CalificacionEstudiante',
+    component: () => import('../views/Calificaciones/CalificacionEstudiante.vue')
+ 
+  },
+  {
     path: '/nuevo',
     name: 'Nuevo',
     component: () => import('../views/Nuevo.vue')
@@ -59,6 +65,11 @@ const routes = [
     path: '/Materias',
     name: 'Materias',
     component: () => import('../views/materias/Materias.vue')
+  },
+  {
+    path: '/NuevaMateria',
+    name: 'Materia',
+    component: () => import('../views/materias/NuevaMateria.vue')
   },
   {
     path: '/Grado',

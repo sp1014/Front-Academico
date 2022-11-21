@@ -98,7 +98,7 @@ import axios from "axios";
           items3:[
           { title: 'Home', icon: 'mdi-home', path:'home' },
           { title: 'Perfil', icon: 'mdi-account', path:'Perfil' },
-          { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'Calificaciones' },
+          { title: 'Calificaciones', icon: 'mdi-spellcheck' ,path:'CalificacionEstudiante' },
           { title: 'Horario', icon: 'mdi-calendar-check', path:'Horario' },
           { title: 'Cerrar Sesión', icon: 'mdi-clock-start', path:'' }
   
