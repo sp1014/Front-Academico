@@ -79,8 +79,9 @@ const routes = [
   {
     path: '/Grado/nuevo',
     name: 'nuevo Grado',
-    component: () => import('../views/grado/nuevogrado.vue')
-  },
+    component: () => import('../views/grado/NuevoGrado.vue')
+  }
+
   
   
 ]

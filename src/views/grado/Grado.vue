@@ -2,67 +2,168 @@
 <div class="container-home">
 <Header/>
 <div class="home">
-    <section class="form-register">
+  <section class="form-register">
     <div clase="tabla">
-     <v-card>
-    <v-card-title>
-      Grados
-      <v-spacer></v-spacer>
-      <v-text-field  v-model="searchCourse" append-icon="mdi-magnify" label="Buscar" single-line hide-details ></v-text-field>
-    </v-card-title>
-    <v-data-table :headers="headersCourse"  :items="datosCourse" :search="searchCourse">        
-    </v-data-table>
-  </v-card> 
-    </div>
+  <v-data-table :headers="headers" :items="desserts" sort-by="calories" class="elevation-1">
+    <template v-slot:top>
+      <v-toolbar flat>
+        <v-toolbar-title>Grado - Curso</v-toolbar-title>
+       <v-btn @click="editItem(0)" color="blue">Agregar</v-btn>
+        <v-divider class="mx-4" inset  vertical></v-divider>
+        <v-spacer></v-spacer>
+        <v-dialog v-model="dialog" max-width="500px">
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">{{ formTitle }}</span>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItem.codGrade" type="number" label="Curso"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                         <v-select :items="items1" v-model="editedItem.status" item-text="name" label="Estado" item-value="id"></v-select>
+                  </v-col>          
+                </v-row>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text  @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="initialize">Reset</v-btn>
+    </template>
+  </v-data-table>
+   </div>
   </section>
+
 </div>
+<Footer/>
 </div>
 </template>
 
+
 <script>
 import Header from '@/components/Header'
+import Footer from '@/components/Footer';
 import axios from "axios";
    export default {
      components:{
-       Header
+       Header,
+       Footer
      },
-      data () {
-      return {
-        searchCourse:'',
-         headersCourse: [
-          {text: 'Id', value: 'id'},
+    data: () => ({
+      formTitle:'',
+      dialog: false,
+      headers: [
+            {text: 'Id', value: 'id'},
           {text: 'Grado', value: 'codGrade'},
           { text: 'Estado', value: 'status' },
-    
-        ],
+          { text: 'Actions', value: 'actions', sortable: false },
+      ],
+      desserts: [],
+      editedIndex: -1,
+      editedItem: {
+        codGrade: Number(0),
+        status: Number(0),
 
-        datos:[],
-        datosCourse:[]
-      }      
-    },
-      created(){
-      this.getUser()
-    },
-    methods:{
-        getColor (califications) {
-        if (califications.calification1 > 29) return 'red'
-        else if (calories > 200) return 'orange'
-        else return 'green'
       },
-     async getUser(){
+      defaultItem: {
+        codGrade: 0,
+        status: 0,
+
+      },
+      items1: [{
+            id: 1,
+            name: 'Activo'
+          },
+          {
+            id: 2,
+            name: 'Inactivo'
+          }
+        ]
+    }),
+
+    computed: {
+    },
+
+    watch: {
+      dialog (val) {
+        val || this.close()
+      },
+
+    },
+
+    created () {
+      this.initialize()
+    },
+
+    methods: {
+      initialize () {
+    
        let config = {
         headers: {
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-        axios.get('http://www.apiacademico.somee.com/api/Grade', config).then((response) => {
-       this.datosCourse=response.data
-       console.log(this.datos)
+           axios.get('http://www.apiacademico.somee.com/api/Grade', config).then((response) => {
+       this.desserts=response.data
+     //  console.log(this.desserts)
       // this.desserts=datos.data;
      })
-     }
+      },
+
+      editItem (item) {
+       
+          this.formTitle = item=== 0 ? 'New Item' : 'Edit Item'
+       // console.log(item)
+        //this.editedIndex = this.desserts.indexOf(item.califications)
+        this.editedIndex= item.id
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+         // console.log(this.editedItem)
+          this.editedIndex = -1
+        })
+      },
+
+      save() {
+
+        if(this.editedIndex >0){
+           axios.put('http://www.apiacademico.somee.com/api/Grade/'+this.editedIndex,this.editedItem).then((response) => {
+           console.log(response)
+           });
+        }else{
+          console.log(this.editedItem)
+           axios.post('http://www.apiacademico.somee.com/api/Grade/',this.editedItem).then((response) => {
+           // console.log(response)
+           });
+      
+        }
+        this.initialize()
+      /*
+     })*/
+        this.close()
+      },
+
     },
-   }
+  }
 </script>
 <style scoped>
 .container-home{
@@ -75,6 +176,11 @@ import axios from "axios";
   margin: 0em;
 }
 
+.blue{
+  position: absolute;
+  top: 2em;
+  right: 2em;
+}
 
 .form-register {
   width: 100%;
@@ -95,4 +201,3 @@ import axios from "axios";
 border: 80px solid #fff;
 }
 </style>
-

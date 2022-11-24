@@ -6,7 +6,7 @@
     <div clase="tabla">
      <v-card>
     <v-card-title>
-      Usuarios
+      Notas
       <v-spacer></v-spacer>
       <v-text-field  v-model="search" append-icon="mdi-magnify" label="Buscar" single-line hide-details ></v-text-field>
     </v-card-title>
@@ -30,9 +30,9 @@ import axios from "axios";
       return {
         search: '',
         headers: [
-          {text: 'Nombre', value: 'name'},
-          {text: 'Apellido', value: 'lastName'},
-          { text: 'Curso', value: 'email' },
+          {text: 'Nombre', value: 'user.name'},
+          {text: 'Apellido', value: 'user.lastName'},
+          { text: 'Email', value: 'user.email' },
           { text: 'Materia', value: 'course.nameCourse' },
           { text: 'Nota 1', value: 'califications.calification1' },
           { text: 'Nota 2', value: 'califications.calification2' },
@@ -40,7 +40,8 @@ import axios from "axios";
           { text: 'Nota Final', value: 'califications.calificationFinal' }    
         ],
 
-        datos:[]
+        datos:[],
+         data:'',
       }      
     },
       created(){
@@ -58,10 +59,14 @@ import axios from "axios";
           "Authorization": "Bearer "+this.$store.state.data.data,
         },
       };
-      axios.get('http://www.apiacademico.somee.com/api/AllocationLoad/idUser/'+this.datos.id, config).then((response) => {
+         axios.get('http://www.apiacademico.somee.com/api/Login', config).then((response) => {
+       this.data=response.data
+
+      axios.get('http://www.apiacademico.somee.com/api/AllocationLoad/idUser/'+this.data.id, config).then((response) => {
        this.datos=response.data
        console.log(this.datos)
       // this.desserts=datos.data;
+     })
      })
      }
     },
