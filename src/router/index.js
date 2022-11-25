@@ -59,7 +59,12 @@ const routes = [
   {
     path: '/Usuarios',
     name: 'Usuarios',
-    component: () => import('../views/Usuarios.vue')
+    component: () => import('../views/Usuario/Usuario.vue')
+  },
+  {
+    path: '/NuevoUsuario',
+    name: 'Usuarios',
+    component: () => import('../views/Usuario/NuevoUsuario.vue')
   },
   {
     path: '/Materias',
